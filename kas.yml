@@ -1,0 +1,68 @@
+header:
+  version: 14
+
+machine: qemuarm64
+distro: poky
+target: core-image-minimal
+
+# Worked example: meta-justembed-security's four layers, on a QEMU
+# target so anyone can build and run this with no physical hardware.
+# Real public URL, no local path shortcuts -- this is exactly what a
+# fresh adopter following the README's "Getting started" steps runs.
+
+repos:
+  poky:
+    url: https://git.yoctoproject.org/poky
+    branch: scarthgap
+    layers:
+      meta:
+      meta-poky:
+      meta-yocto-bsp:
+
+  meta-openembedded:
+    url: https://git.openembedded.org/meta-openembedded
+    branch: scarthgap
+    layers:
+      meta-oe:
+      meta-python:
+      meta-networking:
+
+  meta-swupdate:
+    url: https://github.com/sbabic/meta-swupdate.git
+    branch: scarthgap
+
+  meta-justembed-security:
+    url: https://github.com/justembed-labs/meta-justembed-security.git
+    branch: main
+    layers:
+      meta-je-hygiene:
+      meta-je-sbom-cve:
+      meta-je-detection:
+      meta-je-boot-update:
+
+  meta-je-example:
+    path: sources/meta-je-example
+    layers:
+      .:
+
+local_conf_header:
+  systemd: |
+    INIT_MANAGER = "systemd"
+  # core-image-minimal ships a blank root password by default --
+  # je-hygiene's no_default_credentials check correctly fails the
+  # build on that. A real product image sets a real password instead
+  # of leaving it blank; this opt-out just documents the check ran and
+  # caught it, so the example build can still complete.
+  hygiene: |
+    IMAGE_CLASSES += "je-hygiene"
+    JE_HYGIENE_REQUIRE_NO_DEFAULT_CREDS = "0"
+  je-sbom-cve: |
+    INHERIT += "je-sbom je-cve-scan je-cve-diff"
+    JE_EVIDENCE_STORE = "${TOPDIR}/../evidence-store"
+    JE_EVIDENCE_ENABLE_KEV_EPSS = "1"
+  je-detection: |
+    IMAGE_INSTALL:append = " je-detection-agent je-rule-bundle"
+  je-boot-update: |
+    IMAGE_CLASSES += "je-swupdate-fota"
+  je-secureboot: |
+    INHERIT += "je-secureboot"
