@@ -25,6 +25,67 @@ Three real scan runs, published as-is:
 - `je-sbom-cve`'s scan, diff, and KEV/EPSS triage all run as real bitbake tasks producing real output, not mocked.
 - `je-detection` and `je-boot-update`'s packages install cleanly alongside a completely different package set than the parent project's own reference hardware.
 
+## Secure boot, verified live
+
+`je-secureboot`'s FIT signature verification runs for real on this build --
+not just "the mechanism is wired in", but a live U-Boot instance checking
+a real signature and rejecting a tampered image.
+
+`runqemu`'s default dev-loop boots the kernel directly (`-kernel fitImage`
+straight to `qemu-system-aarch64`), which bypasses U-Boot entirely. To
+exercise the real boot chain, U-Boot itself has to be QEMU's bootloader:
+
+```
+qemu-system-aarch64 -machine virt -cpu cortex-a57 -smp 1 -m 512 -nographic \
+    -bios build/tmp/deploy/images/qemuarm64/u-boot.bin \
+    -kernel build/tmp/deploy/images/qemuarm64/fitImage \
+    -serial mon:stdio
+```
+
+At the `=>` prompt, reload the kernel cleanly via QEMU's fw_cfg device and
+boot it, naming the FIT configuration explicitly (`u-boot`'s
+`CONFIG_FIT_BEST_MATCH` otherwise looks for a `compatible` match against
+the board's own devicetree, which this configuration doesn't set):
+
+```
+=> qfw load 40400000 44000000
+=> bootm 40400000#conf-1
+...
+   Verifying Hash Integrity ... OK
+   ...
+   Verifying Hash Integrity ... sha256+ OK
+```
+
+The `+` marks a signature-backed verification, not a bare hash check --
+this is `je-secureboot`'s RSA key (`je-secureboot-keys/je-secureboot-dev`)
+actually being checked against the public key `uboot-sign.bbclass`
+embedded into `u-boot.dtb` at build time.
+
+Flipping one byte in the kernel payload and repeating the same boot:
+
+```
+   Verifying Hash Integrity ... sha256 error!
+Bad hash value for 'hash-1' hash node in 'kernel-1' image node
+Bad Data Hash
+ERROR: can't get kernel image!
+```
+
+U-Boot refuses to boot it. This is the actual negative case, not an
+assumption about what the mechanism *should* do.
+
+What made this non-trivial: `je-secureboot.bbclass` deliberately doesn't
+(and can't) inherit `uboot-sign.bbclass` on the u-boot recipe or touch its
+`.config` -- that's the consuming BSP's job, done here in
+`sources/meta-je-example/recipes-bsp/u-boot/u-boot_%.bbappend`. Getting it
+working on `qemu_arm64_defconfig` needed one non-obvious fix:
+`UBOOT_DTB_BINARY` has to be a flat filename copied into place after
+`do_compile` (`arch/arm/dts/qemu-arm64.dtb` on this board), not the nested
+path where the real dtb lives -- `uboot-sign.bbclass` uses the same
+variable both as a build-relative path and a bare deploy filename.
+
 ## Not covered here
 
-Secure boot (`je-secureboot`) and the FOTA mechanism (`je-swupdate-fota`) are wired into this build's image classes, but a full signed-update-and-reboot cycle needs a real partition layout and `sw-description` -- board-specific integration work that isn't part of this example yet.
+The FOTA mechanism (`je-swupdate-fota`) is wired into this build's image
+classes, but a full signed-update-and-reboot cycle needs a real partition
+layout and `sw-description` -- board-specific integration work that isn't
+part of this example yet.
