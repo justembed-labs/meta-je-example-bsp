@@ -66,3 +66,18 @@ local_conf_header:
     IMAGE_CLASSES += "je-swupdate-fota"
   je-secureboot: |
     INHERIT += "je-secureboot"
+  # je-secureboot.bbclass only signs the kernel/DT FIT -- embedding the
+  # verifying public key into u-boot.dtb (uboot-sign.bbclass) and
+  # supplying a devicetree are the consuming BSP's job (see the u-boot
+  # bbappend and recipes-bsp/devicetree/ in sources/meta-je-example).
+  je-secureboot-devicetree: |
+    PREFERRED_PROVIDER_virtual/dtb = "qemu-virt-devicetree"
+  # kernel-fitimage.bbclass interpolates this directly into a dts cell
+  # (`load = <${UBOOT_LOADADDRESS}>;`) -- dtc reads a bare numeral as
+  # DECIMAL, not hex, so it needs an explicit "0x" prefix or U-Boot
+  # decompresses the kernel to a bogus address and hangs. 0x48000000 is
+  # 2MB-aligned, inside this machine's DRAM (0x40000000-0x60000000), and
+  # clear of where the compressed FIT gets staged (0x40400000+).
+  je-secureboot-loadaddr: |
+    UBOOT_ENTRYPOINT = "0x48000000"
+    UBOOT_LOADADDRESS = "0x48000000"
