@@ -1,0 +1,22 @@
+# short-description: QEMU virtio-blk disk with swupdate dual-copy (A/B) rootfs
+# long-description: kernel/devicetree/u-boot are supplied externally via
+# QEMU's -kernel/-bios (this board's u-boot doesn't load them from disk,
+# see the README), so this disk only needs to carry what swupdate's A/B
+# mechanism itself needs: a small "boot" partition holding the
+# bootstate-trying.env/bootstate-good.env marker files, two identical
+# rootfs copies (rootA active by default), and a small "state" partition
+# for the uEnv.txt-equivalent rootpart/bootstate override.
+#
+# boot and state are vfat, not ext4 -- confirmed real: qemu_arm64_defconfig's
+# U-Boot has no CONFIG_CMD_EXT4_WRITE/CONFIG_EXT4_WRITE at all ("Unknown
+# command 'ext4write'", and the generic `save` command's ext4 backend
+# also fails to write), but does have `fatwrite`. This is the mirror
+# image of the real AM335x hardware's own U-Boot, which has ext4write
+# but no FAT write command -- the two boards simply differ in which
+# write path their U-Boot build enables, so this layout picks whichever
+# one is actually real for this target rather than assuming.
+
+part --source bootimg-partition --fstype=vfat --label boot --align 1024 --fixed-size 8M
+part / --source rootfs --fstype=ext4 --label rootA --align 1024 --use-uuid --fixed-size 384M
+part /rootfs-b --source rootfs --fstype=ext4 --label rootB --align 1024 --use-uuid --fixed-size 384M
+part --fstype=vfat --label state --align 1024 --fixed-size 4M

@@ -1,0 +1,10 @@
+[Unit]
+Description=Confirm this boot as good (disarm swupdate trial-boot revert)
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/je-swupdate-commit.sh
+
+[Install]
+WantedBy=multi-user.target

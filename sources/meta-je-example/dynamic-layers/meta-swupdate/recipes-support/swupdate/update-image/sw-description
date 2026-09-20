@@ -1,0 +1,49 @@
+# device paths assume QEMU's single virtio-blk disk (/dev/vda) -- no
+# ambiguity like a real board might have with multiple MMC/block
+# devices, since this example only ever attaches one disk.
+software =
+{
+	version = "0.1.0";
+
+	qemuarm64 = {
+		hardware-compatibility: [ "1.0" ];
+		stable : {
+			copy1 : {
+				images: (
+					{
+						filename = "@@SWUPDATE_IMAGES@@-@@MACHINE@@.rootfs.ext4.gz";
+						device = "/dev/vda2";
+						type = "raw";
+						compressed = "zlib";
+						sha256 = "$swupdate_get_sha256(@@SWUPDATE_IMAGES@@-@@MACHINE@@.rootfs.ext4.gz)";
+					}
+				);
+				scripts: (
+					{
+						filename = "activate-rootA.sh";
+						type = "shellscript";
+						sha256 = "$swupdate_get_sha256(activate-rootA.sh)";
+					}
+				);
+			};
+			copy2 : {
+				images: (
+					{
+						filename = "@@SWUPDATE_IMAGES@@-@@MACHINE@@.rootfs.ext4.gz";
+						device = "/dev/vda3";
+						type = "raw";
+						compressed = "zlib";
+						sha256 = "$swupdate_get_sha256(@@SWUPDATE_IMAGES@@-@@MACHINE@@.rootfs.ext4.gz)";
+					}
+				);
+				scripts: (
+					{
+						filename = "activate-rootB.sh";
+						type = "shellscript";
+						sha256 = "$swupdate_get_sha256(activate-rootB.sh)";
+					}
+				);
+			};
+		};
+	}
+}

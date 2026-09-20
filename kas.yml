@@ -64,6 +64,11 @@ local_conf_header:
     IMAGE_INSTALL:append = " je-detection-agent je-rule-bundle"
   je-boot-update: |
     IMAGE_CLASSES += "je-swupdate-fota"
+    WKS_FILE = "qemu-swupdate.wks"
+    IMAGE_FSTYPES:append = " wic"
+    IMAGE_INSTALL:append = " je-swupdate-select je-swupdate-commit je-swupdate-conf"
+    IMAGE_BOOT_FILES:append = " bootstate-trying.env bootstate-good.env"
+    EXTRA_IMAGEDEPENDS:append = " je-swupdate-bootstate-markers"
   je-secureboot: |
     INHERIT += "je-secureboot"
   # je-secureboot.bbclass only signs the kernel/DT FIT -- embedding the

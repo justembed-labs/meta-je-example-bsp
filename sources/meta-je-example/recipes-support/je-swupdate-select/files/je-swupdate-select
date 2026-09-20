@@ -1,0 +1,46 @@
+#!/bin/sh
+# Picks the currently-inactive copy and invokes swupdate against it --
+# reads the RUNNING system's own root device (the actual signal, not a
+# separately-tracked marker that could drift from reality) rather than
+# trusting the state partition, which only reflects what u-boot picked
+# at the last boot.
+#
+# Matches on partition NUMBER only, not a specific virtio-blk letter --
+# QEMU doesn't guarantee vda is this disk (confirmed real: attaching a
+# second virtio-blk device, even just to carry a .swu file into the
+# guest for testing, can make QEMU enumerate this disk as vdb instead).
+# A real deployment only ever has one disk, but hardcoding "vda" is
+# exactly the kind of assumption that breaks silently the moment that
+# stops being true.
+#
+#   je-swupdate-select /path/to/update.swu
+set -e
+
+swu="$1"
+if [ -z "$swu" ]; then
+	echo "usage: je-swupdate-select <path-to-.swu>" >&2
+	exit 1
+fi
+
+rootpart=$(sed -n 's/.*\broot=\/dev\/vd[a-z]\([0-9]\)\b.*/\1/p' /proc/cmdline)
+case "$rootpart" in
+	2) target=copy2 ;;
+	3) target=copy1 ;;
+	*)
+		echo "je-swupdate-select: unexpected rootpart '$rootpart' from /proc/cmdline, refusing to guess" >&2
+		exit 1
+		;;
+esac
+
+# -m/--no-state-marker: without it, swupdate ALSO tries to persist its
+# own "ustate" bootloader-environment marker after a successful install
+# (via libubootenv, requiring /etc/fw_env.config) and reports the whole
+# update as FAILED when that write fails -- even though the actual raw
+# partition write and activation script already succeeded (confirmed
+# real: "Cannot persistently store INSTALLED update state" after a real,
+# correct write to the inactive copy). This board tracks A/B state
+# itself via the state partition's uEnv.txt (activate-rootA.sh/B.sh),
+# not swupdate's own bootloader-env mechanism, so this is the correct,
+# sanctioned way to disable a tracking mechanism this design doesn't use
+# -- not a workaround for a broken check.
+exec swupdate -i "$swu" -e "stable,$target" -k /etc/swupdate.pem -m
