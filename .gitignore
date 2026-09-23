@@ -1,0 +1,5 @@
+build/
+# Local-consecutive-build convenience only (publish_scan.sh's own
+# PREV_ID lookup) -- a fresh checkout self-heals it via reindex.py, see
+# meta-justembed-security's publish_scan.sh and docs/cve-triage.md.
+evidence-store/cve-reports/*/latest
