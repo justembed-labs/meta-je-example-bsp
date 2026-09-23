@@ -49,6 +49,14 @@ jobs:
             python3-packaging xz-utils zstd debianutils iputils-ping file locales lz4 libacl1
           pipx install kas
 
+      # ubuntu-latest (Noble) restricts unprivileged user namespaces via
+      # AppArmor, which bitbake's pseudo/fakeroot setup needs. Same fix
+      # as yocto-bsp's docs/host-setup.md for the mini-PC.
+      - name: Allow unprivileged user namespaces
+        run: |
+          echo 'kernel.apparmor_restrict_unprivileged_userns=0' | sudo tee /etc/sysctl.d/60-apparmor-namespace.conf
+          sudo sysctl --system
+
       - name: Build
         run: |
           export PATH="$HOME/.local/bin:$PATH"
