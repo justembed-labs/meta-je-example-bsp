@@ -13,6 +13,13 @@ on:
   workflow_dispatch: {}
   schedule:
     - cron: "0 3 * * 0" # weekly, Sunday 03:00 UTC
+  # Only to catch a merged evidence-store update and republish Pages --
+  # build-evidence guards itself off this trigger below, so a push here
+  # never starts a full Yocto build.
+  push:
+    branches: [main]
+    paths:
+      - "evidence-store/**"
 
 permissions:
   contents: write
@@ -24,6 +31,7 @@ jobs:
   build-evidence:
     runs-on: ubuntu-latest
     timeout-minutes: 330
+    if: github.event_name != 'push'
     steps:
       - uses: actions/checkout@v4
 
