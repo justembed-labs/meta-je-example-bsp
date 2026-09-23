@@ -1,0 +1,176 @@
+acl	2.3.2	LGPL-2.1-or-later AND GPL-2.0-or-later	SPDXRef-Recipe-acl
+acl-native	2.3.2	LGPL-2.1-or-later AND GPL-2.0-or-later	SPDXRef-Recipe-acl-native
+attr	2.5.1	LGPL-2.1-or-later AND GPL-2.0-or-later	SPDXRef-Recipe-attr
+attr-native	2.5.1	LGPL-2.1-or-later AND GPL-2.0-or-later	SPDXRef-Recipe-attr-native
+audit	4.0.2	GPL-2.0-or-later AND LGPL-2.0-or-later	SPDXRef-Recipe-audit
+autoconf-archive-native	2023.02.20	GPL-3.0-with-autoconf-exception	SPDXRef-Recipe-autoconf-archive-native
+autoconf-native	2.72e	GPL-3.0-or-later	SPDXRef-Recipe-autoconf-native
+automake-native	1.16.5	GPL-2.0-only	SPDXRef-Recipe-automake-native
+base-files	3.0.14	GPL-2.0-only	SPDXRef-Recipe-base-files
+base-passwd	3.6.8	GPL-2.0-only	SPDXRef-Recipe-base-passwd
+bash-completion	2.12.0	GPL-2.0-only	SPDXRef-Recipe-bash-completion
+bc-native	1.07.1	GPL-3.0-or-later	SPDXRef-Recipe-bc-native
+binutils-cross-aarch64	2.42	GPL-3.0-only	SPDXRef-Recipe-binutils-cross-aarch64
+bison-native	3.8.2	GPL-3.0-only	SPDXRef-Recipe-bison-native
+busybox	1.36.1	GPL-2.0-only AND LicenseRef-bzip2-1.0.4	SPDXRef-Recipe-busybox
+bzip2	1.0.8	bzip2-1.0.6 AND GPL-3.0-or-later AND Apache-2.0 AND MS-PL AND BSD-3-Clause AND Zlib	SPDXRef-Recipe-bzip2
+bzip2-native	1.0.8	bzip2-1.0.6 AND GPL-3.0-or-later AND Apache-2.0 AND MS-PL AND BSD-3-Clause AND Zlib	SPDXRef-Recipe-bzip2-native
+ca-certificates	20260601	GPL-2.0-or-later AND MPL-2.0	SPDXRef-Recipe-ca-certificates
+ca-certificates-native	20260601	GPL-2.0-or-later AND MPL-2.0	SPDXRef-Recipe-ca-certificates-native
+cmake-native	3.28.3	BSD-3-Clause AND BSD-1-Clause AND MIT AND BSD-2-Clause AND curl	SPDXRef-Recipe-cmake-native
+coreutils-native	9.4	GPL-3.0-or-later	SPDXRef-Recipe-coreutils-native
+curl-native	8.7.1	curl	SPDXRef-Recipe-curl-native
+dbus	1.14.10	AFL-2.1 OR GPL-2.0-or-later	SPDXRef-Recipe-dbus
+dbus-native	1.14.10	AFL-2.1 OR GPL-2.0-or-later	SPDXRef-Recipe-dbus-native
+dtc-native	1.7.0	GPL-2.0-only OR BSD-2-Clause	SPDXRef-Recipe-dtc-native
+e2fsprogs	1.47.0	GPL-2.0-only AND LGPL-2.0-only AND BSD-3-Clause AND MIT	SPDXRef-Recipe-e2fsprogs
+e2fsprogs-native	1.47.0	GPL-2.0-only AND LGPL-2.0-only AND BSD-3-Clause AND MIT	SPDXRef-Recipe-e2fsprogs-native
+elfutils-native	0.191	( GPL-2.0-or-later OR LGPL-3.0-or-later ) AND GPL-3.0-or-later	SPDXRef-Recipe-elfutils-native
+expat	2.6.4	MIT	SPDXRef-Recipe-expat
+expat-native	2.6.4	MIT	SPDXRef-Recipe-expat-native
+flex-native	2.6.4	BSD-3-Clause AND LGPL-2.0-or-later	SPDXRef-Recipe-flex-native
+fluentbit	1.9.7	Apache-2.0	SPDXRef-Recipe-fluentbit
+gawk-native	5.3.0	GPL-3.0-only	SPDXRef-Recipe-gawk-native
+gcc-cross-aarch64	13.4.0	GPL-3.0-with-GCC-exception AND GPL-3.0-only	SPDXRef-Recipe-gcc-cross-aarch64
+gcc-runtime	13.4.0	GPL-3.0-with-GCC-exception	SPDXRef-Recipe-gcc-runtime
+gdbm	1.23	GPL-3.0-only	SPDXRef-Recipe-gdbm
+gdbm-native	1.23	GPL-3.0-only	SPDXRef-Recipe-gdbm-native
+gettext-minimal-native	0.22.5	LicenseRef-FSF-Unlimited	SPDXRef-Recipe-gettext-minimal-native
+gettext-native	0.22.5	GPL-3.0-or-later AND LGPL-2.1-or-later AND MIT	SPDXRef-Recipe-gettext-native
+git-native	2.44.4	GPL-2.0-only AND GPL-2.0-or-later AND BSD-3-Clause AND MIT AND BSL-1.0 AND LGPL-2.1-or-later	SPDXRef-Recipe-git-native
+glib-2.0	2.78.6	LGPL-2.1-or-later AND BSD-3-Clause AND LicenseRef-PD	SPDXRef-Recipe-glib-2.0
+glib-2.0-native	2.78.6	LGPL-2.1-or-later AND BSD-3-Clause AND LicenseRef-PD	SPDXRef-Recipe-glib-2.0-native
+glibc	2.39+git	GPL-2.0-only AND LGPL-2.1-or-later	SPDXRef-Recipe-glibc
+gmp-native	6.3.0	GPL-2.0-or-later OR LGPL-3.0-or-later	SPDXRef-Recipe-gmp-native
+gnu-config-native	20240101+git	GPL-3.0-with-autoconf-exception	SPDXRef-Recipe-gnu-config-native
+gnutls-native	3.8.4	GPL-3.0-or-later AND LGPL-2.1-or-later	SPDXRef-Recipe-gnutls-native
+gperf-native	3.1	GPL-3.0-or-later	SPDXRef-Recipe-gperf-native
+gtk-doc-native	1.33.2	GPL-2.0-only	SPDXRef-Recipe-gtk-doc-native
+je-detection-agent	0.1	Apache-2.0	SPDXRef-Recipe-je-detection-agent
+je-rule-bundle	0.1	Apache-2.0	SPDXRef-Recipe-je-rule-bundle
+json-c	0.17	MIT	SPDXRef-Recipe-json-c
+kbd	2.6.4	GPL-2.0-or-later AND LGPL-2.0-or-later AND GPL-3.0-or-later	SPDXRef-Recipe-kbd
+kern-tools-native	0.3+git	GPL-2.0-only AND MIT	SPDXRef-Recipe-kern-tools-native
+kmod	31	GPL-2.0-or-later AND LGPL-2.1-or-later	SPDXRef-Recipe-kmod
+kmod-native	31	GPL-2.0-or-later AND LGPL-2.1-or-later	SPDXRef-Recipe-kmod-native
+libarchive-native	3.7.9	BSD-2-Clause	SPDXRef-Recipe-libarchive-native
+libbsd-native	0.12.1	BSD-3-Clause AND BSD-4-Clause AND ISC AND LicenseRef-PD	SPDXRef-Recipe-libbsd-native
+libcap	2.69	BSD-3-Clause OR GPL-2.0-only	SPDXRef-Recipe-libcap
+libcap-native	2.69	BSD-3-Clause OR GPL-2.0-only	SPDXRef-Recipe-libcap-native
+libcap-ng	0.8.5	GPL-2.0-or-later AND LGPL-2.1-or-later	SPDXRef-Recipe-libcap-ng
+libcap-ng-native	0.8.5	GPL-2.0-or-later AND LGPL-2.1-or-later	SPDXRef-Recipe-libcap-ng-native
+libconfig	1.7.3	LGPL-2.1-only	SPDXRef-Recipe-libconfig
+libedit	20230828-3.1	BSD-3-Clause	SPDXRef-Recipe-libedit
+libedit-native	20230828-3.1	BSD-3-Clause	SPDXRef-Recipe-libedit-native
+libffi	3.4.6	MIT	SPDXRef-Recipe-libffi
+libffi-native	3.4.6	MIT	SPDXRef-Recipe-libffi-native
+libgcc	13.4.0	GPL-3.0-with-GCC-exception AND GPL-3.0-only	SPDXRef-Recipe-libgcc
+libgcc-initial	13.4.0	GPL-3.0-with-GCC-exception	SPDXRef-Recipe-libgcc-initial
+libgcrypt-native	1.10.4	GPL-2.0-or-later AND LGPL-2.1-or-later	SPDXRef-Recipe-libgcrypt-native
+libgpg-error-native	1.48	GPL-2.0-or-later AND LGPL-2.1-or-later	SPDXRef-Recipe-libgpg-error-native
+libice	1.1.1	MIT	SPDXRef-Recipe-libice
+libidn2-native	2.3.7	( GPL-2.0-or-later OR LGPL-3.0-only ) AND GPL-3.0-or-later AND Unicode-DFS-2016	SPDXRef-Recipe-libidn2-native
+libmd-native	1.1.0	BSD-3-Clause AND BSD-2-Clause	SPDXRef-Recipe-libmd-native
+libmicrohttpd-native	1.0.1	LGPL-2.1-or-later	SPDXRef-Recipe-libmicrohttpd-native
+libmpc-native	1.3.1	LGPL-3.0-only	SPDXRef-Recipe-libmpc-native
+libnsl2	2.0.1	LGPL-2.1-only	SPDXRef-Recipe-libnsl2
+libnsl2-native	2.0.1	LGPL-2.1-only	SPDXRef-Recipe-libnsl2-native
+libpam	1.5.3	GPL-2.0-or-later OR BSD-3-Clause	SPDXRef-Recipe-libpam
+libpcre2	10.43	BSD-3-Clause	SPDXRef-Recipe-libpcre2
+libpcre2-native	10.43	BSD-3-Clause	SPDXRef-Recipe-libpcre2-native
+libpthread-stubs	0.5	MIT	SPDXRef-Recipe-libpthread-stubs
+libseccomp	2.5.5	LGPL-2.1-only	SPDXRef-Recipe-libseccomp
+libsm	1.2.4	MIT	SPDXRef-Recipe-libsm
+libtasn1-native	4.20.0	GPL-3.0-or-later AND LGPL-2.1-or-later	SPDXRef-Recipe-libtasn1-native
+libtirpc	1.3.4	BSD-3-Clause	SPDXRef-Recipe-libtirpc
+libtirpc-native	1.3.4	BSD-3-Clause	SPDXRef-Recipe-libtirpc-native
+libtool-cross	2.4.7	GPL-2.0-only AND LGPL-2.1-only	SPDXRef-Recipe-libtool-cross
+libtool-native	2.4.7	GPL-2.0-only AND LGPL-2.1-only	SPDXRef-Recipe-libtool-native
+libubootenv	0.3.5	LGPL-2.1-or-later	SPDXRef-Recipe-libubootenv
+libunistring-native	1.2	LGPL-3.0-or-later OR GPL-2.0-or-later	SPDXRef-Recipe-libunistring-native
+libx11	1.8.9	MIT AND BSD-1-Clause AND HPND AND HPND-sell-variant AND ISC	SPDXRef-Recipe-libx11
+libxau	1.0.11	MIT	SPDXRef-Recipe-libxau
+libxcb	1.16	MIT	SPDXRef-Recipe-libxcb
+libxcrypt	4.4.36	LGPL-2.1-only	SPDXRef-Recipe-libxcrypt
+libxdmcp	1.1.4	MIT	SPDXRef-Recipe-libxdmcp
+libxkbcommon	1.6.0	MIT AND MIT	SPDXRef-Recipe-libxkbcommon
+libxml2	2.12.10	MIT	SPDXRef-Recipe-libxml2
+libxml2-native	2.12.10	MIT	SPDXRef-Recipe-libxml2-native
+libxslt-native	1.1.43	MIT	SPDXRef-Recipe-libxslt-native
+libyaml	0.2.5	MIT	SPDXRef-Recipe-libyaml
+linux-libc-headers	6.6	GPL-2.0-only	SPDXRef-Recipe-linux-libc-headers
+linux-yocto	6.6.151+git	GPL-2.0-only	SPDXRef-Recipe-linux-yocto
+lua	5.4.6	MIT	SPDXRef-Recipe-lua
+lzo	2.10	GPL-2.0-or-later	SPDXRef-Recipe-lzo
+m4-native	1.4.19	GPL-3.0-only	SPDXRef-Recipe-m4-native
+make-native	4.4.1	GPL-3.0-only	SPDXRef-Recipe-make-native
+meson-native	1.3.1	Apache-2.0	SPDXRef-Recipe-meson-native
+mpfr-native	4.2.1	LGPL-3.0-or-later	SPDXRef-Recipe-mpfr-native
+mtd-utils	2.1.6	GPL-2.0-or-later	SPDXRef-Recipe-mtd-utils
+ncurses	6.4	MIT	SPDXRef-Recipe-ncurses
+ncurses-native	6.4	MIT	SPDXRef-Recipe-ncurses-native
+netbase	6.4	GPL-2.0-only	SPDXRef-Recipe-netbase
+nettle-native	3.9.1	LGPL-3.0-or-later OR GPL-2.0-or-later	SPDXRef-Recipe-nettle-native
+ninja-native	1.11.1	Apache-2.0	SPDXRef-Recipe-ninja-native
+openssl	3.5.7	Apache-2.0	SPDXRef-Recipe-openssl
+openssl-native	3.5.7	Apache-2.0	SPDXRef-Recipe-openssl-native
+opkg-utils	0.6.3	GPL-2.0-or-later	SPDXRef-Recipe-opkg-utils
+os-release	1.0	MIT	SPDXRef-Recipe-os-release
+packagegroup-core-boot	1.0	MIT	SPDXRef-Recipe-packagegroup-core-boot
+perl-native	5.38.4	Artistic-1.0 OR GPL-1.0-or-later	SPDXRef-Recipe-perl-native
+perlcross-native	1.6.2	Artistic-1.0 OR GPL-1.0-or-later	SPDXRef-Recipe-perlcross-native
+pkgconfig-native	0.29.2+git	GPL-2.0-or-later	SPDXRef-Recipe-pkgconfig-native
+popt-native	1.19	MIT	SPDXRef-Recipe-popt-native
+python3	3.12.14	PSF-2.0	SPDXRef-Recipe-python3
+python3-build-native	1.1.1	MIT	SPDXRef-Recipe-python3-build-native
+python3-flit-core-native	3.9.0	BSD-3-Clause	SPDXRef-Recipe-python3-flit-core-native
+python3-installer-native	0.7.0	MIT	SPDXRef-Recipe-python3-installer-native
+python3-jinja2-native	3.1.6	BSD-3-Clause	SPDXRef-Recipe-python3-jinja2-native
+python3-native	3.12.14	PSF-2.0	SPDXRef-Recipe-python3-native
+python3-pyproject-hooks-native	1.0.0	MIT	SPDXRef-Recipe-python3-pyproject-hooks-native
+python3-setuptools-native	69.1.1	MIT	SPDXRef-Recipe-python3-setuptools-native
+python3-wheel-native	0.42.0	MIT	SPDXRef-Recipe-python3-wheel-native
+qemu-native	8.2.7	GPL-2.0-only AND LGPL-2.1-only	SPDXRef-Recipe-qemu-native
+re2c-native	3.1	LicenseRef-PD	SPDXRef-Recipe-re2c-native
+readline	8.2	GPL-3.0-or-later	SPDXRef-Recipe-readline
+readline-native	8.2	GPL-3.0-or-later	SPDXRef-Recipe-readline-native
+rsync-native	3.2.7	GPL-3.0-or-later	SPDXRef-Recipe-rsync-native
+shadow	4.14.2	BSD-3-Clause	SPDXRef-Recipe-shadow
+shadow-native	4.14.2	BSD-3-Clause	SPDXRef-Recipe-shadow-native
+shadow-securetty	4.6	MIT	SPDXRef-Recipe-shadow-securetty
+shadow-sysroot	4.6	BSD-3-Clause OR Artistic-1.0	SPDXRef-Recipe-shadow-sysroot
+sqlite3	3.45.3	LicenseRef-PD	SPDXRef-Recipe-sqlite3
+sqlite3-native	3.45.3	LicenseRef-PD	SPDXRef-Recipe-sqlite3-native
+swig-native	4.2.1	BSD-3-Clause AND GPL-3.0-only	SPDXRef-Recipe-swig-native
+swupdate	2026.05.1	GPL-2.0-only AND GPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-2.1-only AND MIT AND ISC AND BSD-1-Clause AND BSD-3-Clause AND OFL-1.1	SPDXRef-Recipe-swupdate
+systemd	255.22	GPL-2.0-only AND LGPL-2.1-or-later	SPDXRef-Recipe-systemd
+systemd-compat-units	1.0	MIT	SPDXRef-Recipe-systemd-compat-units
+systemd-conf	1.0	MIT	SPDXRef-Recipe-systemd-conf
+systemd-serialgetty	1.0	GPL-2.0-or-later	SPDXRef-Recipe-systemd-serialgetty
+systemd-systemctl-native	1.0	MIT	SPDXRef-Recipe-systemd-systemctl-native
+tcp-wrappers	7.6	BSD-1-Clause	SPDXRef-Recipe-tcp-wrappers
+texinfo-dummy-native	1.0	MIT	SPDXRef-Recipe-texinfo-dummy-native
+u-boot-tools-native	2024.01	GPL-2.0-or-later	SPDXRef-Recipe-u-boot-tools-native
+unifdef-native	2.12	BSD-2-Clause	SPDXRef-Recipe-unifdef-native
+unzip-native	6.0	Info-ZIP	SPDXRef-Recipe-unzip-native
+update-rc.d	0.8+git	GPL-2.0-or-later	SPDXRef-Recipe-update-rc.d
+util-linux	2.39.3	GPL-1.0-or-later AND GPL-2.0-or-later AND LGPL-2.1-or-later AND BSD-2-Clause AND BSD-3-Clause AND BSD-4-Clause AND MIT	SPDXRef-Recipe-util-linux
+util-linux-libuuid	2.39.3	BSD-3-Clause	SPDXRef-Recipe-util-linux-libuuid
+util-linux-libuuid-native	2.39.3	BSD-3-Clause	SPDXRef-Recipe-util-linux-libuuid-native
+util-linux-native	2.39.3	GPL-1.0-or-later AND GPL-2.0-or-later AND LGPL-2.1-or-later AND BSD-2-Clause AND BSD-3-Clause AND BSD-4-Clause AND MIT	SPDXRef-Recipe-util-linux-native
+util-macros	1.20.0	MIT AND MIT	SPDXRef-Recipe-util-macros
+volatile-binds	1.0	MIT	SPDXRef-Recipe-volatile-binds
+wayland	1.22.0	MIT	SPDXRef-Recipe-wayland
+wayland-native	1.22.0	MIT	SPDXRef-Recipe-wayland-native
+wayland-protocols	1.33	MIT	SPDXRef-Recipe-wayland-protocols
+xcb-proto	1.16.0	MIT	SPDXRef-Recipe-xcb-proto
+xkeyboard-config	2.41	MIT AND MIT	SPDXRef-Recipe-xkeyboard-config
+xorgproto	2023.2	MIT	SPDXRef-Recipe-xorgproto
+xorgproto-native	2023.2	MIT	SPDXRef-Recipe-xorgproto-native
+xtrans	1.5.0	MIT	SPDXRef-Recipe-xtrans
+xz	5.4.7	GPL-2.0-or-later AND GPL-3.0-with-autoconf-exception AND LGPL-2.1-or-later AND LicenseRef-PD	SPDXRef-Recipe-xz
+xz-native	5.4.7	GPL-2.0-or-later AND GPL-3.0-with-autoconf-exception AND LGPL-2.1-or-later AND LicenseRef-PD	SPDXRef-Recipe-xz-native
+zlib	1.3.1	Zlib	SPDXRef-Recipe-zlib
+zlib-native	1.3.1	Zlib	SPDXRef-Recipe-zlib-native
+zstd	1.5.5	BSD-3-Clause OR GPL-2.0-only	SPDXRef-Recipe-zstd
+zstd-native	1.5.5	BSD-3-Clause OR GPL-2.0-only	SPDXRef-Recipe-zstd-native

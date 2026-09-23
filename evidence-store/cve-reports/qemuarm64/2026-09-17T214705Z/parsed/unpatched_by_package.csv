@@ -1,0 +1,6 @@
+package,version,layer,unpatched,highest_score,highest_severity
+linux-yocto,6.6.151+git,meta,573,9.8,critical
+openssl,3.5.7,meta,8,9.8,critical
+glibc,2.39+git,meta,4,9.8,critical
+python3,3.12.14,meta,1,6.3,medium
+expat,2.6.4,meta,5,4.9,medium

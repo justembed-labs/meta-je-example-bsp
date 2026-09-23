@@ -60,6 +60,15 @@ local_conf_header:
     INHERIT += "je-sbom je-cve-scan je-cve-diff"
     JE_EVIDENCE_STORE = "${TOPDIR}/../evidence-store"
     JE_EVIDENCE_ENABLE_KEV_EPSS = "1"
+    # qemuarm64's kernel recipe is linux-yocto, not linux-ti-staging
+    # (this project's other, TI-based BSP) -- JE_KERNEL_PACKAGE tells
+    # the kernel triage scripts which package to actually triage.
+    JE_KERNEL_PACKAGE = "linux-yocto"
+    JE_EVIDENCE_ENABLE_UPSTREAM_KERNEL_TRIAGE = "1"
+    # Real compiled-file list for config-inapplicable filtering (see
+    # docs/cve-triage.md in meta-justembed-security) -- without this,
+    # the upstream triage step still runs, just without that bucket.
+    SPDX_INCLUDE_COMPILED_SOURCES:pn-linux-yocto = "1"
   je-detection: |
     IMAGE_INSTALL:append = " je-detection-agent je-rule-bundle"
   je-boot-update: |

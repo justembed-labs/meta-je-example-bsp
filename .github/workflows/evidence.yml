@@ -1,0 +1,110 @@
+name: evidence
+
+# Builds the real qemuarm64 image with meta-justembed-security's four
+# layers, runs the real SBOM/CVE/KEV-EPSS/kernel-triage evidence
+# pipeline, commits the result to evidence-store/ via a PR, and (on
+# push to main) republishes the evidence viewer to GitHub Pages.
+#
+# Manual/scheduled only, not on every push -- a full Yocto build on a
+# GitHub-hosted runner easily takes over an hour; this is the periodic
+# "does the evidence pipeline still work, what does it say" checkpoint,
+# not the every-commit loop.
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "0 3 * * 0" # weekly, Sunday 03:00 UTC
+
+permissions:
+  contents: write
+  pull-requests: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+
+      # Standard ubuntu-latest runners ship ~14GB free out of ~84GB --
+      # not enough for a real Yocto build (sstate-cache/downloads/tmp
+      # alone routinely need 40GB+). Removes preinstalled toolchains
+      # this build doesn't use (Android SDK, .NET, GHC, etc.) to free
+      # real space before the build starts, not after it fails.
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android \
+            /opt/ghc /opt/hostedtoolcache/CodeQL \
+            /usr/local/share/boost "$AGENT_TOOLSDIRECTORY" \
+            /opt/az /usr/lib/jvm /usr/local/.ghcup 2>/dev/null || true
+          df -h /
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential gawk wget git diffstat unzip texinfo gcc chrpath socat cpio \
+            python3 python3-pip python3-pexpect python3-git python3-jinja2 python3-subunit \
+            python3-packaging xz-utils zstd debianutils iputils-ping file locales lz4 libacl1
+          pipx install kas
+
+      - name: Build
+        run: |
+          export PATH="$HOME/.local/bin:$PATH"
+          kas build kas.yml
+
+      - name: Free build artifacts before committing evidence
+        if: always()
+        run: |
+          # Only evidence-store/ needs to survive -- the multi-GB build/
+          # tree doesn't, and keeping it around risks the runner running
+          # out of space during the git operations below.
+          du -sh build evidence-store 2>/dev/null || true
+          rm -rf build/tmp build/sstate-cache build/downloads 2>/dev/null || true
+
+      - name: Open evidence PR
+        if: always()
+        run: |
+          if [ -n "$(git status --porcelain evidence-store 2>/dev/null)" ]; then
+            run_id="ci-${{ github.run_id }}"
+            branch="evidence/${run_id}"
+            git config user.email "ci@justembed.nl"
+            git config user.name "meta-je-example-bsp CI"
+            git checkout -b "$branch"
+            git add evidence-store
+            git commit -m "evidence: scheduled scan ${run_id}"
+            git push origin "$branch"
+            gh pr create --title "evidence: scheduled scan ${run_id}" \
+              --body "Automated evidence-store update from workflow run ${{ github.run_id }}." \
+              --base main --head "$branch"
+          else
+            echo "no evidence-store changes, nothing to open a PR for"
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+  pages:
+    # Separate job, not chained after build-evidence -- this republishes
+    # whatever is already merged into evidence-store/ on main (from a
+    # previously-merged evidence PR), the same way the yocto-bsp/GitLab
+    # side's `pages` job does. Runs on every push to main so a merged
+    # evidence PR republishes automatically, same as build-evidence
+    # running on its own schedule.
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the public/ site
+        run: |
+          git clone --depth 1 https://github.com/justembed-labs/meta-justembed-security.git /tmp/security-layers
+          /tmp/security-layers/meta-je-sbom-cve/scripts/publish_gitlab_pages.sh \
+            "$GITHUB_WORKSPACE/evidence-store/cve-reports" public
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,16 @@
+{
+  "by_severity": {
+    "critical": 27,
+    "high": 234,
+    "medium": 320,
+    "low": 10,
+    "unknown": 0
+  },
+  "by_status": {
+    "Patched": 17084,
+    "Unpatched": 591,
+    "Ignored": 26
+  },
+  "packages": 61,
+  "packages_with_unpatched": 5
+}
