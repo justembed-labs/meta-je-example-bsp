@@ -69,6 +69,9 @@ local_conf_header:
     # docs/cve-triage.md in meta-justembed-security) -- without this,
     # the upstream triage step still runs, just without that bucket.
     SPDX_INCLUDE_COMPILED_SOURCES:pn-linux-yocto = "1"
+    # Real git apply --check verification against linux-yocto's own
+    # checked-out source tree -- see docs/cve-triage.md.
+    JE_EVIDENCE_ENABLE_KERNEL_BACKPORT_CHECK = "1"
   je-detection: |
     IMAGE_INSTALL:append = " je-detection-agent je-rule-bundle"
   je-boot-update: |
