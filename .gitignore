@@ -1,4 +1,7 @@
 build/
+# Machine-local kas overlay (parallelism caps etc.) -- see kas-local.yml
+# comment header. Never commit host-specific tuning to the public example.
+kas-local.yml
 # Local-consecutive-build convenience only (publish_scan.sh's own
 # PREV_ID lookup) -- a fresh checkout self-heals it via reindex.py, see
 # meta-justembed-security's publish_scan.sh and docs/cve-triage.md.
