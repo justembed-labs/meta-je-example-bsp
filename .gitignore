@@ -2,6 +2,14 @@ build/
 # Machine-local kas overlay (parallelism caps etc.) -- see kas-local.yml
 # comment header. Never commit host-specific tuning to the public example.
 kas-local.yml
+# kas's own checked-out source layers (repos: in kas.yml with no
+# explicit `path:` land at the repo root by default) -- never commit a
+# fetched upstream layer into this repo.
+/poky/
+/meta-openembedded/
+/meta-swupdate/
+/meta-justembed-security/
+/je-secureboot-keys/
 # Local-consecutive-build convenience only (publish_scan.sh's own
 # PREV_ID lookup) -- a fresh checkout self-heals it via reindex.py, see
 # meta-justembed-security's publish_scan.sh and docs/cve-triage.md.
