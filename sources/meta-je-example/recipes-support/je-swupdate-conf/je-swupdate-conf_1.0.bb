@@ -12,11 +12,12 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/Apache-2.0;md5=89aea4e17d99a7ca
 
 SRC_URI = "file://je-swupdate-conf.sh"
 
-RDEPENDS:${PN} = "swupdate"
+RDEPENDS:${PN} = "swupdate je-downgrade-guard"
 
 do_install() {
     install -d ${D}${libdir}/swupdate/conf.d
     install -m 0644 ${WORKDIR}/je-swupdate-conf.sh ${D}${libdir}/swupdate/conf.d/50-je-swupdate-conf.sh
+    sed -i -e 's|@LIBDIR@|${libdir}|g' ${D}${libdir}/swupdate/conf.d/50-je-swupdate-conf.sh
     install -d ${D}${sysconfdir}
     echo "${MACHINE} 1.0" > ${D}${sysconfdir}/hwrevision
 }
