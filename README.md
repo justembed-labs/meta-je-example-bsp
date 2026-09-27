@@ -90,10 +90,9 @@ implementation lives in the parent repo:
   [`docs/fota.md`](docs/fota.md) for the exact sequence. `runqemu`'s
   default dev loop (above) avoids this entirely but also bypasses
   U-Boot, so it can't demonstrate the secure-boot/FOTA proofs.
-- No `LICENSE` file is published in this repository yet -- see the
-  parent project's
-  [`LICENSE`](https://github.com/justembed-labs/meta-justembed-security/blob/main/LICENSE)/[`NOTICE`](https://github.com/justembed-labs/meta-justembed-security/blob/main/NOTICE)
-  (Apache-2.0) in the meantime.
+## License
+
+Apache-2.0. See [LICENSE](LICENSE).
 
 ## Deep dives
 

@@ -7,8 +7,8 @@ correctly signed .swu. Space-separated '<boardname> <revision>' -- \
 confirmed against swupdate's own core/hw-compatibility.c: \
 get_hw_revision() reads it with fscanf(fp, \"%ms %ms\", ...), NOT \
 colon-separated like the -H flag's own <board>:<rev> syntax."
-LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+LICENSE = "Apache-2.0"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/Apache-2.0;md5=89aea4e17d99a7cacdbeed46a0096b10"
 
 SRC_URI = "file://je-swupdate-conf.sh"
 

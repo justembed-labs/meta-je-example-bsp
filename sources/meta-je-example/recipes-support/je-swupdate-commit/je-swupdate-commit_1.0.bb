@@ -5,8 +5,8 @@ boot is reached -- the userspace half of the trial-boot design. \
 Without this, every activated copy would revert on its very next \
 reboot regardless of whether it was actually healthy, since bootstate \
 only ever starts at 'trial'/'trying' and nothing else clears it."
-LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+LICENSE = "Apache-2.0"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/Apache-2.0;md5=89aea4e17d99a7cacdbeed46a0096b10"
 
 SRC_URI = " \
     file://je-swupdate-commit.sh \
